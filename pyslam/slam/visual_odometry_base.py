@@ -159,6 +159,7 @@ class VisualOdometryBase:
             pg = gt_T[:3, 3].ravel()
             self.traj3d_gt.append(pg)
 
-            self.poses.append(poseRt(self.cur_R, np.array(p).ravel()))
+            # Store pose expressed in same centered reference frame as the trajectory
+            self.poses.append(cur_T.copy())
             self.pose_timestamps.append(self.cur_timestamp)
             # self.poses.append(poseRt(self.cur_R, p[0]))
